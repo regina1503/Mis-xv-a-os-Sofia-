@@ -4,6 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>XV Años Sofía - Invitación Digital</title>
+
+    <!-- Meta Etiquetas Open Graph para previsualización en WhatsApp / Redes Sociales -->
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Mis XV Años - Sofía 🩵">
+    <meta property="og:description" content="Te invito a celebrar conmigo este día tan especial. ¡Haz clic para ver los detalles y confirmar tu asistencia!">
+    <meta property="og:image" content="https://raw.githubusercontent.com/regina1503/Mis-xv-a-os-Sofia-/main/Agregar%20un%20subt%C3%ADtulo%20(16).jpg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+
+    <!-- Meta Etiquetas para Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Mis XV Años - Sofía 🩵">
+    <meta name="twitter:description" content="Te invito a celebrar conmigo este día tan especial. Haz clic para ver todos los detalles.">
+    <meta name="twitter:image" content="https://raw.githubusercontent.com/regina1503/Mis-xv-a-os-Sofia-/main/Agregar%20un%20subt%C3%ADtulo%20(16).jpg">
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- FontAwesome icons -->
@@ -63,7 +79,7 @@
             background-repeat: no-repeat;
         }
         .bg-section-6 {
-            background-image: url('https://raw.githubusercontent.com/regina1503/Mis-xv-a-os-Sofia-/main/Agregar%20un%20subt%C3%ADtulo%20(17).jpg');
+            background-image: url('https://raw.githubusercontent.com/regina1503/Mis-xv-a-os-Sofia-/main/Agrega.jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -288,21 +304,38 @@
         window.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
             
+            // Permite 'nombre', 'invitado' o 'n' en la URL
             if (urlParams.has('nombre')) {
                 guestName = urlParams.get('nombre');
+            } else if (urlParams.has('invitado')) {
+                guestName = urlParams.get('invitado');
+            } else if (urlParams.has('n')) {
+                guestName = urlParams.get('n');
             }
             
+            // Permite 'pases', 'pase' o 'p' en la URL
+            let rawPasses = null;
             if (urlParams.has('pases')) {
-                const parsedPasses = parseInt(urlParams.get('pases'));
+                rawPasses = urlParams.get('pases');
+            } else if (urlParams.has('pase')) {
+                rawPasses = urlParams.get('pase');
+            } else if (urlParams.has('p')) {
+                rawPasses = urlParams.get('p');
+            }
+
+            if (rawPasses) {
+                const parsedPasses = parseInt(rawPasses, 10);
                 if (!isNaN(parsedPasses) && parsedPasses > 0) {
                     maxPasses = parsedPasses;
                 }
             }
 
+            // Actualizar la interfaz con los valores extraídos
             document.getElementById('guestName').innerText = guestName;
             document.getElementById('maxPassesText').innerText = maxPasses;
             document.getElementById('maxLimitLabel').innerText = maxPasses;
 
+            // Generar las opciones del selector dinámicamente según la cantidad de pases
             const selectElement = document.getElementById('confirmedPasses');
             selectElement.innerHTML = '';
             for (let i = 1; i <= maxPasses; i++) {
