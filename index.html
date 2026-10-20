@@ -22,13 +22,14 @@
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     fontFamily: {
                         sans: ['"Montserrat"', 'sans-serif'],
+                        serif: ['"Playfair Display"', 'serif'],
                     },
                     colors: {
                         roseGold: '#B76E79',
@@ -96,8 +97,8 @@
     <!-- SECCIÓN 2 / PÁGINA 2 -->
     <section class="bg-section-2 h-screen w-full relative flex flex-col items-center px-4" style="padding-top: 20vh;">
         
-        <!-- Reproductor de Música Minimalista Centrado (Azul Plumbago) - Bajado 5% (de 15vh a 20vh) y Aumentado un 3% (w-14 h-14 a w-16 h-16) -->
-        <div class="z-50">
+        <!-- Reproductor de Música Minimalista Centrado (Azul Plumbago) - Bajado 20vh + 5% adicional y tamaño incrementado -->
+        <div class="z-50" style="padding-top: 20vh;">
             <button id="playBtn" onclick="toggleMusic()" class="w-16 h-16 rounded-full bg-plumbago text-white flex items-center justify-center shadow-xl hover:bg-plumbagoDark hover:scale-105 transition-all border-2 border-white/40 backdrop-blur-sm">
                 <i id="playIcon" class="fa-solid fa-play text-2xl ml-0.5"></i>
             </button>
@@ -118,18 +119,18 @@
     </section>
 
     <!-- SECCIÓN 5 / PÁGINA 5 -->
-    <section class="bg-section-5 h-screen w-full relative flex flex-col items-center justify-between py-12 px-4" style="padding-top: 21vh; padding-bottom: 2vh;">
+    <section class="bg-section-5 h-screen w-full relative flex flex-col items-center justify-between py-12 px-4" style="padding-top: 18vh; padding-bottom: 2vh;">
         <!-- Espaciador superior -->
         <div></div>
 
-        <!-- Botón Ubicación - Centro (Subido un 6%, de 27vh a 21vh) -->
+        <!-- Botón Ubicación - Centro (Subido un 6% inicial, luego 3%, luego 3% adicional) -->
         <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" 
            class="bg-plumbago hover:bg-plumbagoDark text-white font-medium py-3 px-6 rounded-full shadow-lg border border-white/30 backdrop-blur-sm flex items-center gap-2 transform hover:scale-105 transition-all">
             <i class="fa-solid fa-location-dot"></i>
             <span>Ubicación</span>
         </a>
 
-        <!-- Botón Ubicación - Al Final -->
+        <!-- Botón Ubicación - Al Final (Bajado 12%, subido 3%, luego subido 3% adicional) -->
         <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" 
            class="bg-plumbago hover:bg-plumbagoDark text-white font-medium py-3 px-6 rounded-full shadow-lg border border-white/30 backdrop-blur-sm flex items-center gap-2 transform hover:scale-105 transition-all mb-0">
             <i class="fa-solid fa-location-dot"></i>
@@ -143,37 +144,83 @@
 
     <!-- SECCIÓN 7 / PÁGINA 7 -->
     <section class="bg-section-7 h-screen w-full relative flex flex-col items-center justify-center p-4">
-        <!-- Tarjeta de Confirmación de Pases Personalizada (Sin fondo y subida un 10%) -->
+        <!-- Tarjeta de Confirmación de Pases Personalizada en Pasos (Sin fondo, subida 10% y sin título superior) -->
         <div class="p-6 md:p-8 max-w-sm w-full text-center border-0 transform -translate-y-[10vh] transition-all">
-            <h2 class="text-2xl font-bold text-plumbagoDark mb-1">Pases Reservados</h2>
-            <div class="w-12 h-1 bg-plumbago mx-auto rounded-full mb-4"></div>
 
-            <p class="text-xs uppercase tracking-widest text-gray-600 font-semibold mb-1">Invitado Especial</p>
-            <h3 id="guestName" class="text-xl font-bold text-gray-900 mb-4 capitalize">Familia Invitada</h3>
+            <!-- PASO 1: Mostrar Invitado y Pases -->
+            <div id="step1" class="transition-all duration-300">
+                <p class="text-xs uppercase tracking-widest text-gray-600 font-semibold mb-2">Invitado Especial</p>
+                <h3 id="guestName" class="text-2xl font-bold font-serif italic text-plumbagoDark mb-5 capitalize">Familia Invitada</h3>
 
-            <div class="bg-plumbago/15 rounded-2xl p-4 mb-5 border border-plumbago/30 backdrop-blur-xs">
-                <span class="text-sm text-gray-800 font-medium block mb-1">Hemos reservado para ti:</span>
-                <span id="maxPassesText" class="text-3xl font-extrabold text-plumbagoDark">1</span>
-                <span class="text-sm font-bold text-plumbagoDark block mt-0.5">pase(s) individual(es)</span>
+                <div class="bg-plumbago/15 rounded-2xl p-3.5 mb-5 border border-plumbago/30 backdrop-blur-xs">
+                    <span class="text-xs text-gray-800 font-medium block mb-0.5">Hemos reservado para ti:</span>
+                    <span id="maxPassesText" class="text-3xl font-extrabold text-plumbagoDark">1</span>
+                    <span class="text-xs font-bold text-plumbagoDark block mt-0.5">pase(s) individual(es)</span>
+                </div>
+
+                <button onclick="goToStep(2)" class="w-full bg-plumbago hover:bg-plumbagoDark text-white font-bold py-2.5 px-6 rounded-xl shadow-lg border border-white/30 flex items-center justify-center gap-2 transform active:scale-95 hover:scale-105 transition-all text-sm">
+                    <span>Continuar a Confirmación</span>
+                    <i class="fa-solid fa-arrow-right"></i>
+                </button>
             </div>
 
-            <!-- Selector de Asistencia -->
-            <div class="mb-5 text-left">
-                <label for="confirmedPasses" class="block text-xs font-bold text-gray-800 uppercase mb-2">
-                    Confirma número de asistentes:
-                </label>
-                <div class="flex items-center gap-2">
-                    <select id="confirmedPasses" class="w-full bg-white/90 border border-plumbago/30 rounded-xl px-4 py-2.5 text-gray-800 font-semibold focus:outline-none focus:ring-2 focus:ring-plumbago shadow-md">
-                        <!-- Opciones generadas dinámicamente con JavaScript -->
+            <!-- PASO 2: ¿Asistirán o no? -->
+            <div id="step2" class="hidden transition-all duration-300">
+                <p class="text-xs uppercase tracking-widest text-gray-600 font-semibold mb-1">¿Nos acompañarás?</p>
+                <h3 class="text-lg font-bold text-gray-900 mb-5">Confirma tu respuesta</h3>
+
+                <div class="flex gap-3 mb-5">
+                    <button onclick="handleAttendance(true)" class="flex-1 bg-plumbago hover:bg-plumbagoDark text-white font-bold py-2.5 px-4 rounded-xl shadow-md border border-white/30 transition-all text-sm flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-check"></i> Sí Asistiré
+                    </button>
+                    <button onclick="handleAttendance(false)" class="flex-1 bg-gray-500 hover:bg-gray-600 text-white font-bold py-2.5 px-4 rounded-xl shadow-md border border-white/30 transition-all text-sm flex items-center justify-center gap-2">
+                        <i class="fa-solid fa-xmark"></i> No Podré
+                    </button>
+                </div>
+
+                <button onclick="goToStep(1)" class="text-xs text-plumbagoDark font-semibold hover:underline">
+                    <i class="fa-solid fa-arrow-left"></i> Regresar
+                </button>
+            </div>
+
+            <!-- PASO 3: Selección de asistentes (solo si asiste) y WhatsApp -->
+            <div id="step3" class="hidden transition-all duration-300">
+                <p class="text-xs uppercase tracking-widest text-gray-600 font-semibold mb-1">Número de Asistentes</p>
+                <h3 class="text-lg font-bold text-gray-900 mb-4">¿Cuántos asistirán?</h3>
+
+                <div class="mb-5 text-left">
+                    <label for="confirmedPasses" class="block text-[11px] font-bold text-gray-800 uppercase mb-1.5">
+                        Selecciona cantidad (Máx. <span id="maxLimitLabel">1</span>):
+                    </label>
+                    <select id="confirmedPasses" class="w-full bg-white/90 border border-plumbago/30 rounded-xl px-3 py-2 text-sm text-gray-800 font-semibold focus:outline-none focus:ring-2 focus:ring-plumbago shadow-md">
+                        <!-- Opciones generadas dinámicamente -->
                     </select>
+                </div>
+
+                <div class="flex flex-col gap-2.5">
+                    <button onclick="sendRSVP()" class="w-full bg-plumbago hover:bg-plumbagoDark text-white font-bold py-2.5 px-6 rounded-xl shadow-lg border border-white/30 flex items-center justify-center gap-2 transform active:scale-95 hover:scale-105 transition-all text-sm">
+                        <i class="fa-brands fa-whatsapp text-lg"></i>
+                        <span>Enviar Confirmación</span>
+                    </button>
+                    <button onclick="goToStep(2)" class="text-xs text-plumbagoDark font-semibold hover:underline mt-1">
+                        <i class="fa-solid fa-arrow-left"></i> Regresar
+                    </button>
                 </div>
             </div>
 
-            <!-- Botón de Confirmar Asistencia por WhatsApp -->
-            <button onclick="sendRSVP()" class="w-full bg-plumbago hover:bg-plumbagoDark text-white font-bold py-3 px-6 rounded-xl shadow-lg border border-white/30 flex items-center justify-center gap-2 transform active:scale-95 hover:scale-105 transition-all">
-                <i class="fa-brands fa-whatsapp text-xl"></i>
-                <span>Confirmar Asistencia</span>
-            </button>
+            <!-- PASO 4: Mensaje si No Asiste -->
+            <div id="step4" class="hidden transition-all duration-300">
+                <div class="bg-gray-200/50 rounded-2xl p-4 mb-5 border border-gray-300 backdrop-blur-xs">
+                    <p class="text-sm text-gray-800 font-medium">Lamentamos que no nos acompañes, ¡gracias por avisarnos!</p>
+                </div>
+                <button onclick="sendNoRSVP()" class="w-full bg-gray-700 hover:bg-gray-800 text-white font-bold py-2.5 px-6 rounded-xl shadow-lg border border-white/30 flex items-center justify-center gap-2 transform active:scale-95 transition-all text-sm">
+                    <i class="fa-brands fa-whatsapp text-lg"></i>
+                    <span>Avisar por WhatsApp</span>
+                </button>
+                <button onclick="goToStep(2)" class="text-xs text-plumbagoDark font-semibold hover:underline mt-3 block">
+                    <i class="fa-solid fa-arrow-left"></i> Cambiar respuesta
+                </button>
+            </div>
         </div>
     </section>
 
@@ -195,7 +242,6 @@
         }
 
         /* LÓGICA DE PASES PERSONALIZADOS VÍA PARÁMETROS URL */
-        // Configura el número de teléfono donde recibirás los mensajes de confirmación de WhatsApp
         const TELEFONO_WHATSAPP = "5210000000000"; 
 
         let maxPasses = 1;
@@ -204,12 +250,10 @@
         window.addEventListener('DOMContentLoaded', () => {
             const urlParams = new URLSearchParams(window.location.search);
             
-            // Obtener parámetro 'nombre' (Ej: ?nombre=Familia+Perez)
             if (urlParams.has('nombre')) {
                 guestName = urlParams.get('nombre');
             }
             
-            // Obtener parámetro 'pases' (Ej: ?pases=5)
             if (urlParams.has('pases')) {
                 const parsedPasses = parseInt(urlParams.get('pases'));
                 if (!isNaN(parsedPasses) && parsedPasses > 0) {
@@ -217,11 +261,10 @@
                 }
             }
 
-            // Actualizar interfaz
             document.getElementById('guestName').innerText = guestName;
             document.getElementById('maxPassesText').innerText = maxPasses;
+            document.getElementById('maxLimitLabel').innerText = maxPasses;
 
-            // Llenar el selector dinámicamente sin exceder maxPasses
             const selectElement = document.getElementById('confirmedPasses');
             selectElement.innerHTML = '';
             for (let i = 1; i <= maxPasses; i++) {
@@ -232,9 +275,33 @@
             }
         });
 
+        function goToStep(step) {
+            document.getElementById('step1').classList.add('hidden');
+            document.getElementById('step2').classList.add('hidden');
+            document.getElementById('step3').classList.add('hidden');
+            document.getElementById('step4').classList.add('hidden');
+
+            document.getElementById(`step${step}`).classList.remove('hidden');
+        }
+
+        function handleAttendance(willAttend) {
+            if (willAttend) {
+                goToStep(3);
+            } else {
+                goToStep(4);
+            }
+        }
+
         function sendRSVP() {
             const confirmedCount = document.getElementById('confirmedPasses').value;
             const message = `¡Hola! Confirmo mi asistencia a los XV Años de Sofía. 🩵%0A%0A*Invitado:* ${encodeURIComponent(guestName)}%0A*Pases asignados:* ${maxPasses}%0A*Asistentes confirmados:* ${confirmedCount}`;
+            
+            const whatsappUrl = `https://api.whatsapp.com/send?phone=${TELEFONO_WHATSAPP}&text=${message}`;
+            window.open(whatsappUrl, '_blank');
+        }
+
+        function sendNoRSVP() {
+            const message = `¡Hola! Lamento mucho informar que no podré asistir a los XV Años de Sofía. 🩵%0A%0A*Invitado:* ${encodeURIComponent(guestName)}`;
             
             const whatsappUrl = `https://api.whatsapp.com/send?phone=${TELEFONO_WHATSAPP}&text=${message}`;
             window.open(whatsappUrl, '_blank');
