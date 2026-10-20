@@ -109,10 +109,10 @@
     </section>
 
     <!-- SECCIÓN 2 / PÁGINA 2 -->
-    <section class="bg-section-2 h-screen w-full relative flex flex-col items-center px-4" style="padding-top: 6vh;">
+    <section class="bg-section-2 h-screen w-full relative flex flex-col items-center px-4" style="padding-top: 10vh;">
         
-        <!-- Reproductor de Música Minimalista Centrado (Azul Plumbago) - Subido un 14% adicional -->
-        <div class="z-50" style="padding-top: 6vh;">
+        <!-- Reproductor de Música Minimalista Centrado (Azul Plumbago) - Bajado un 4% (de 6vh a 10vh) -->
+        <div class="z-50">
             <button id="playBtn" onclick="toggleMusic()" class="w-16 h-16 rounded-full bg-plumbago text-white flex items-center justify-center shadow-xl hover:bg-plumbagoDark hover:scale-105 transition-all border-2 border-white/40 backdrop-blur-sm">
                 <i id="playIcon" class="fa-solid fa-play text-2xl ml-0.5"></i>
             </button>
@@ -133,8 +133,8 @@
     </section>
 
     <!-- SECCIÓN 5 / PÁGINA 5 -->
-    <section class="bg-section-5 h-screen w-full relative flex flex-col items-center justify-between py-12 px-4" style="padding-top: 15vh; padding-bottom: 2vh;">
-        <!-- Espaciador superior ajustado un 3% más arriba (15vh) -->
+    <section class="bg-section-5 h-screen w-full relative flex flex-col items-center justify-between py-12 px-4" style="padding-top: 13vh; padding-bottom: 2vh;">
+        <!-- Espaciador superior subido un 2% adicional (de 15vh a 13vh) -->
         <div></div>
 
         <!-- Botón Ubicación - Centro -->
@@ -245,36 +245,36 @@
     <section class="bg-section-8 h-screen w-full relative flex flex-col items-center justify-center p-4">
         <div class="text-center text-white p-4 max-w-sm w-full transform -translate-y-[24vh]">
 
-            <!-- Grid de Cuenta Regresiva con Círculos Ajustados (Reducidos 3% para dar separación) -->
+            <!-- Grid de Cuenta Regresiva con Círculos Ajustados (Reducidos un 8% adicional) -->
             <div class="grid grid-cols-4 gap-2 text-center">
                 <!-- DÍAS -->
                 <div class="flex flex-col items-center">
-                    <div class="flex items-center justify-center w-[68px] h-[68px] md:w-[83px] md:h-[83px] bg-plumbago/85 rounded-full border border-white/40 shadow-lg backdrop-blur-xs">
-                        <span id="cd-days" class="text-2xl md:text-3xl font-extrabold font-mono leading-none text-white">00</span>
+                    <div class="flex items-center justify-center w-[62px] h-[62px] md:w-[76px] md:h-[76px] bg-plumbago/85 rounded-full border border-white/40 shadow-lg backdrop-blur-xs">
+                        <span id="cd-days" class="text-xl md:text-2xl font-extrabold font-mono leading-none text-white">00</span>
                     </div>
                     <span class="text-[10px] md:text-xs uppercase font-extrabold text-plumbagoDark mt-1.5 drop-shadow-sm tracking-wider">Días</span>
                 </div>
 
                 <!-- HORAS -->
                 <div class="flex flex-col items-center">
-                    <div class="flex items-center justify-center w-[68px] h-[68px] md:w-[83px] md:h-[83px] bg-plumbago/85 rounded-full border border-white/40 shadow-lg backdrop-blur-xs">
-                        <span id="cd-hours" class="text-2xl md:text-3xl font-extrabold font-mono leading-none text-white">00</span>
+                    <div class="flex items-center justify-center w-[62px] h-[62px] md:w-[76px] md:h-[76px] bg-plumbago/85 rounded-full border border-white/40 shadow-lg backdrop-blur-xs">
+                        <span id="cd-hours" class="text-xl md:text-2xl font-extrabold font-mono leading-none text-white">00</span>
                     </div>
                     <span class="text-[10px] md:text-xs uppercase font-extrabold text-plumbagoDark mt-1.5 drop-shadow-sm tracking-wider">Horas</span>
                 </div>
 
                 <!-- MINUTOS -->
                 <div class="flex flex-col items-center">
-                    <div class="flex items-center justify-center w-[68px] h-[68px] md:w-[83px] md:h-[83px] bg-plumbago/85 rounded-full border border-white/40 shadow-lg backdrop-blur-xs">
-                        <span id="cd-minutes" class="text-2xl md:text-3xl font-extrabold font-mono leading-none text-white">00</span>
+                    <div class="flex items-center justify-center w-[62px] h-[62px] md:w-[76px] md:h-[76px] bg-plumbago/85 rounded-full border border-white/40 shadow-lg backdrop-blur-xs">
+                        <span id="cd-minutes" class="text-xl md:text-2xl font-extrabold font-mono leading-none text-white">00</span>
                     </div>
                     <span class="text-[10px] md:text-xs uppercase font-extrabold text-plumbagoDark mt-1.5 drop-shadow-sm tracking-wider">Min</span>
                 </div>
 
                 <!-- SEGUNDOS -->
                 <div class="flex flex-col items-center">
-                    <div class="flex items-center justify-center w-[68px] h-[68px] md:w-[83px] md:h-[83px] bg-plumbago/85 rounded-full border border-white/40 shadow-lg backdrop-blur-xs">
-                        <span id="cd-seconds" class="text-2xl md:text-3xl font-extrabold font-mono leading-none text-white">00</span>
+                    <div class="flex items-center justify-center w-[62px] h-[62px] md:w-[76px] md:h-[76px] bg-plumbago/85 rounded-full border border-white/40 shadow-lg backdrop-blur-xs">
+                        <span id="cd-seconds" class="text-xl md:text-2xl font-extrabold font-mono leading-none text-white">00</span>
                     </div>
                     <span class="text-[10px] md:text-xs uppercase font-extrabold text-plumbagoDark mt-1.5 drop-shadow-sm tracking-wider">Seg</span>
                 </div>
