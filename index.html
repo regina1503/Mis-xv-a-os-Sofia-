@@ -23,6 +23,7 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <!-- Google Fonts -->
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Playfair+Display:ital,wght@0,600;1,600&display=swap" rel="stylesheet">
+    
     <script>
         tailwind.config = {
             theme: {
@@ -40,6 +41,7 @@
             }
         }
     </script>
+    
     <style>
         html {
             scroll-behavior: smooth;
@@ -74,6 +76,12 @@
             background-position: center;
             background-repeat: no-repeat;
         }
+        .bg-section-5-5 {
+            background-image: url('https://raw.githubusercontent.com/regina1503/Mis-xv-a-os-Sofia-/main/Agregar%20un%20subt%C3%ADtulo%20(19).jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
         .bg-section-6 {
             background-image: url('https://raw.githubusercontent.com/regina1503/Mis-xv-a-os-Sofia-/main/Agregar%20un%20subt%C3%ADtulo%20(17).jpg');
             background-size: cover;
@@ -82,6 +90,12 @@
         }
         .bg-section-7 {
             background-image: url('https://raw.githubusercontent.com/regina1503/Mis-xv-a-os-Sofia-/main/Agregar%20un%20subt%C3%ADtulo%20(18).jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .bg-section-8 {
+            background-image: url('https://raw.githubusercontent.com/regina1503/Mis-xv-a-os-Sofia-/main/Agregar%20un%20subt%C3%ADtulo%20(20).jpg');
             background-size: cover;
             background-position: center;
             background-repeat: no-repeat;
@@ -97,7 +111,7 @@
     <!-- SECCIÓN 2 / PÁGINA 2 -->
     <section class="bg-section-2 h-screen w-full relative flex flex-col items-center px-4" style="padding-top: 20vh;">
         
-        <!-- Reproductor de Música Minimalista Centrado (Azul Plumbago) - Bajado 20vh + 5% adicional y tamaño incrementado -->
+        <!-- Reproductor de Música Minimalista Centrado (Azul Plumbago) -->
         <div class="z-50" style="padding-top: 20vh;">
             <button id="playBtn" onclick="toggleMusic()" class="w-16 h-16 rounded-full bg-plumbago text-white flex items-center justify-center shadow-xl hover:bg-plumbagoDark hover:scale-105 transition-all border-2 border-white/40 backdrop-blur-sm">
                 <i id="playIcon" class="fa-solid fa-play text-2xl ml-0.5"></i>
@@ -123,19 +137,23 @@
         <!-- Espaciador superior -->
         <div></div>
 
-        <!-- Botón Ubicación - Centro (Subido un 6% inicial, luego 3%, luego 3% adicional) -->
+        <!-- Botón Ubicación - Centro -->
         <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" 
            class="bg-plumbago hover:bg-plumbagoDark text-white font-medium py-3 px-6 rounded-full shadow-lg border border-white/30 backdrop-blur-sm flex items-center gap-2 transform hover:scale-105 transition-all">
             <i class="fa-solid fa-location-dot"></i>
             <span>Ubicación</span>
         </a>
 
-        <!-- Botón Ubicación - Al Final (Bajado 12%, subido 3%, luego subido 3% adicional) -->
+        <!-- Botón Ubicación - Al Final -->
         <a href="https://maps.google.com" target="_blank" rel="noopener noreferrer" 
            class="bg-plumbago hover:bg-plumbagoDark text-white font-medium py-3 px-6 rounded-full shadow-lg border border-white/30 backdrop-blur-sm flex items-center gap-2 transform hover:scale-105 transition-all mb-0">
             <i class="fa-solid fa-location-dot"></i>
             <span>Ubicación</span>
         </a>
+    </section>
+
+    <!-- NUEVA SECCIÓN (PÁGINA DESPUÉS DE LA 5) -->
+    <section class="bg-section-5-5 h-screen w-full relative">
     </section>
 
     <!-- SECCIÓN 6 / PÁGINA 6 -->
@@ -149,7 +167,6 @@
 
             <!-- PASO 1: Mostrar Invitado y Pases -->
             <div id="step1" class="transition-all duration-300">
-                <p class="text-xs uppercase tracking-widest text-gray-600 font-semibold mb-2">Invitado Especial</p>
                 <h3 id="guestName" class="text-2xl font-bold font-serif italic text-plumbagoDark mb-5 capitalize">Familia Invitada</h3>
 
                 <div class="bg-plumbago/15 rounded-2xl p-3.5 mb-5 border border-plumbago/30 backdrop-blur-xs">
@@ -224,7 +241,37 @@
         </div>
     </section>
 
-    <!-- Script para reproductor y lógica de pases por URL -->
+    <!-- SECCIÓN 8 / PÁGINA 8 (NUEVA PÁGINA FINAL CON CUENTA REGRESIVA) -->
+    <section class="bg-section-8 h-screen w-full relative flex flex-col items-center justify-center p-4">
+        <div class="text-center text-white bg-black/30 backdrop-blur-md border border-white/20 p-6 md:p-8 rounded-3xl shadow-2xl max-w-sm w-full transform -translate-y-6">
+            <h3 class="text-lg md:text-xl font-serif italic text-white tracking-wide mb-1">Faltan</h3>
+            <div class="w-10 h-0.5 bg-plumbago mx-auto mb-6 rounded-full"></div>
+
+            <!-- Grid de Cuenta Regresiva -->
+            <div class="grid grid-cols-4 gap-2 md:gap-3 text-center mb-2">
+                <div class="flex flex-col items-center bg-plumbago/80 rounded-2xl p-2.5 border border-white/30 shadow-md">
+                    <span id="cd-days" class="text-2xl md:text-3xl font-extrabold font-mono leading-none">00</span>
+                    <span class="text-[10px] md:text-xs uppercase font-semibold text-gray-200 mt-1">Días</span>
+                </div>
+                <div class="flex flex-col items-center bg-plumbago/80 rounded-2xl p-2.5 border border-white/30 shadow-md">
+                    <span id="cd-hours" class="text-2xl md:text-3xl font-extrabold font-mono leading-none">00</span>
+                    <span class="text-[10px] md:text-xs uppercase font-semibold text-gray-200 mt-1">Horas</span>
+                </div>
+                <div class="flex flex-col items-center bg-plumbago/80 rounded-2xl p-2.5 border border-white/30 shadow-md">
+                    <span id="cd-minutes" class="text-2xl md:text-3xl font-extrabold font-mono leading-none">00</span>
+                    <span class="text-[10px] md:text-xs uppercase font-semibold text-gray-200 mt-1">Min</span>
+                </div>
+                <div class="flex flex-col items-center bg-plumbago/80 rounded-2xl p-2.5 border border-white/30 shadow-md">
+                    <span id="cd-seconds" class="text-2xl md:text-3xl font-extrabold font-mono leading-none">00</span>
+                    <span class="text-[10px] md:text-xs uppercase font-semibold text-gray-200 mt-1">Seg</span>
+                </div>
+            </div>
+            
+            <p class="text-xs font-medium text-white/80 mt-4 tracking-widest uppercase">5 de Diciembre, 2026</p>
+        </div>
+    </section>
+
+    <!-- Script para reproductor, lógica de pases por URL y Cuenta Regresiva -->
     <script>
         const bgAudio = document.getElementById('bgAudio');
         const playIcon = document.getElementById('playIcon');
@@ -273,6 +320,9 @@
                 option.textContent = `${i} ${i === 1 ? 'Persona' : 'Personas'}`;
                 selectElement.appendChild(option);
             }
+
+            // Inicializar la cuenta regresiva
+            startCountdown();
         });
 
         function goToStep(step) {
@@ -305,6 +355,37 @@
             
             const whatsappUrl = `https://api.whatsapp.com/send?phone=${TELEFONO_WHATSAPP}&text=${message}`;
             window.open(whatsappUrl, '_blank');
+        }
+
+        /* LÓGICA DE CUENTA REGRESIVA (5 DICIEMBRE 2026) */
+        function startCountdown() {
+            const eventDate = new Date("December 5, 2026 00:00:00").getTime();
+
+            function updateTimer() {
+                const now = new Date().getTime();
+                const distance = eventDate - now;
+
+                if (distance < 0) {
+                    document.getElementById("cd-days").innerText = "00";
+                    document.getElementById("cd-hours").innerText = "00";
+                    document.getElementById("cd-minutes").innerText = "00";
+                    document.getElementById("cd-seconds").innerText = "00";
+                    return;
+                }
+
+                const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+                const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+
+                document.getElementById("cd-days").innerText = days < 10 ? '0' + days : days;
+                document.getElementById("cd-hours").innerText = hours < 10 ? '0' + hours : hours;
+                document.getElementById("cd-minutes").innerText = minutes < 10 ? '0' + minutes : minutes;
+                document.getElementById("cd-seconds").innerText = seconds < 10 ? '0' + seconds : seconds;
+            }
+
+            updateTimer();
+            setInterval(updateTimer, 1000);
         }
     </script>
 </body>
