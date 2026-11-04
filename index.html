@@ -96,9 +96,95 @@
             background-position: center;
             background-repeat: no-repeat;
         }
+
+        /* ===== MODO "PENDIENTE DE PAGO" ===== */
+        #marcaAgua, #avisoPago, #toastPago { display: none; }
+
+        body.pendiente-pago #marcaAgua {
+            display: block;
+            position: fixed;
+            inset: 0;
+            z-index: 9998;
+            pointer-events: none;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='340' height='220'%3E%3Ctext x='50%25' y='50%25' text-anchor='middle' dominant-baseline='middle' transform='rotate(-30 170 110)' font-family='Arial, sans-serif' font-size='30' font-weight='900' letter-spacing='3' fill='rgba(255,255,255,0.55)' stroke='rgba(59,89,115,0.55)' stroke-width='1'%3EREALIZA TU PAGO%3C/text%3E%3C/svg%3E");
+            background-repeat: repeat;
+        }
+
+        body.pendiente-pago #avisoPago {
+            display: flex;
+            position: fixed;
+            left: 0; right: 0; bottom: 0;
+            z-index: 9999;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            padding: 10px 14px;
+            background: rgba(59, 89, 115, 0.95);
+            color: #fff;
+            font-size: 13px;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-align: center;
+            box-shadow: 0 -4px 14px rgba(0,0,0,0.25);
+        }
+
+        /* Botones bloqueados: se ven apagados y con candado */
+        body.pendiente-pago section a,
+        body.pendiente-pago section button,
+        body.pendiente-pago section select {
+            filter: grayscale(0.8);
+            opacity: 0.6;
+            cursor: not-allowed !important;
+            position: relative;
+        }
+        body.pendiente-pago section a::after,
+        body.pendiente-pago section button::after {
+            content: "\f023"; /* candado FontAwesome */
+            font-family: "Font Awesome 6 Free";
+            font-weight: 900;
+            position: absolute;
+            top: -6px; right: -6px;
+            width: 20px; height: 20px;
+            border-radius: 50%;
+            background: #3B5973;
+            color: #fff;
+            font-size: 10px;
+            display: flex; align-items: center; justify-content: center;
+            border: 1.5px solid #fff;
+        }
+
+        body.pendiente-pago #toastPago.visible {
+            display: block;
+            position: fixed;
+            top: 50%; left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 10000;
+            max-width: 290px;
+            width: 85%;
+            padding: 18px 20px;
+            border-radius: 18px;
+            background: rgba(255,255,255,0.97);
+            color: #3B5973;
+            text-align: center;
+            font-size: 14px;
+            font-weight: 600;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.35);
+            border: 2px solid #5A7D9A;
+        }
     </style>
 </head>
 <body class="font-sans antialiased overflow-x-hidden bg-black">
+
+    <!-- Marca de agua y aviso de pago (solo visibles mientras PAGO_REALIZADO = false) -->
+    <div id="marcaAgua"></div>
+    <div id="avisoPago">
+        <i class="fa-solid fa-lock"></i>
+        <span>VISTA PREVIA · Realiza tu pago para activar tu invitación</span>
+    </div>
+    <div id="toastPago">
+        <i class="fa-solid fa-lock text-2xl mb-2 block"></i>
+        Los botones se activarán en cuanto se realice el pago.
+    </div>
 
     <!-- SECCIÓN 1 / PÁGINA 1 -->
     <section class="bg-section-1 h-screen w-full relative">
@@ -280,6 +366,36 @@
 
     <!-- Script para reproductor, pases y cuenta regresiva -->
     <script>
+        /* =========================================================
+           🔒 INTERRUPTOR DE PAGO
+           false = vista previa con marca de agua y botones bloqueados
+           true  = invitación activa (cámbialo cuando te paguen)
+           ========================================================= */
+        const PAGO_REALIZADO = false;
+
+        if (!PAGO_REALIZADO) {
+            document.body.classList.add('pendiente-pago');
+
+            const toast = document.getElementById('toastPago');
+            let toastTimer;
+
+            // Intercepta cualquier clic en botones, enlaces o selector antes de que se ejecuten
+            document.addEventListener('click', (e) => {
+                const control = e.target.closest('section a, section button, section select');
+                if (!control) return;
+                e.preventDefault();
+                e.stopImmediatePropagation();
+                toast.classList.add('visible');
+                clearTimeout(toastTimer);
+                toastTimer = setTimeout(() => toast.classList.remove('visible'), 2200);
+            }, true);
+
+            // Desactiva el selector de asistentes
+            window.addEventListener('DOMContentLoaded', () => {
+                document.querySelectorAll('section select').forEach(s => s.disabled = true);
+            });
+        }
+
         const bgAudio = document.getElementById('bgAudio');
         const playIcon = document.getElementById('playIcon');
 
